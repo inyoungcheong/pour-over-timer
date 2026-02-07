@@ -407,6 +407,15 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   display: block;
 }
 
+.below-coffee{
+  display: block;
+  margin: 20px auto 0;
+  max-width: 280px;
+  width: 100%;
+  opacity: 0.9;
+  animation: fadeIn 1.2s ease forwards;
+}
+
 /* === Music Player === */
 .music-player {
   position: fixed;
@@ -537,6 +546,11 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   50% {
     transform: scale(1.008) translateY(-1px);
   }
+}
+
+@keyframes fadeIn{
+  from { opacity:0; transform: translateY(6px); }
+  to { opacity:0.9; transform: translateY(0); }
 }
 
 @keyframes gentleSway {
