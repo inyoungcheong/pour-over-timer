@@ -48,7 +48,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   line-height: 1.5;
 }
 
@@ -355,13 +354,32 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
 
 .bmc-link{
   display: inline-flex;
-  transform: translateX(-6px); /* 눈 기준 중앙 보정 (필요 없으면 지워도 됨) */
 }
 
 .bmc-img{
   display: block;
 }
 
+
+.quotes-section {
+  text-align: center;
+}
+
+.quote-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quote-text img {
+  display: block;
+  margin: 0 auto;
+}
+
+.coffee-button {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
 
 /* === Music Player === */
 .music-player {
@@ -438,10 +456,10 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
 
 /* === Quotes Section === */
 .quotes-section {
-  width: 100%;
+  width: min(92vw, 560px);
   max-width: 600px;
   margin: 0 auto;
-  padding: 32px 24px 16px;
+  padding: 24px 0px 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -614,10 +632,11 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   }
 
   .music-player {
-    bottom: 12px;
-    right: 12px;
+    .music-player {
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      right: 12px;
+    }
   }
-}
 
 @media (max-width: 400px) {
   .timer-digits {
@@ -631,5 +650,11 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   .controls {
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .quotes-section {
+    padding-bottom: 90px; /* floating UI 피하기 */
   }
 }
