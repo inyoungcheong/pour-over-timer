@@ -175,14 +175,17 @@ const App = (() => {
     const total = Math.ceil(state.secondsRemaining);
     const mins = Math.floor(total / 60);
     const secs = total % 60;
-    els.timerDigits.textContent =
-      String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    const timeStr = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    els.timerDigits.innerHTML = timeStr.split('').map(ch =>
+      ch === ':' ? '<span class="timer-colon">:</span>' : '<span class="timer-digit">' + ch + '</span>'
+    ).join('');
   }
 
   function updatePhaseDisplay() {
     const names = { bloom: 'Bloom', pour: 'Pour', wait: 'Wait' };
     els.phaseName.textContent = names[state.currentPhase];
     els.phaseName.setAttribute('data-phase', state.currentPhase);
+    document.body.setAttribute('data-phase', state.currentPhase);
 
     // Trigger animation
     els.phaseName.classList.remove('transitioning');
