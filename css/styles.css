@@ -247,21 +247,51 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   margin-top: 8px;
 }
 
-.settings-title {
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-family: var(--font-body);
   font-size: 1.05rem;
   font-weight: 500;
   color: var(--color-text-light);
-  text-align: center;
-  margin-bottom: 16px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  padding: 8px 0;
+  margin-bottom: 4px;
+  transition: color var(--transition);
+}
+
+.settings-toggle:hover {
+  color: var(--color-text);
+}
+
+.settings-chevron {
+  transition: transform 0.25s ease;
+}
+
+.settings-toggle[aria-expanded="true"] .settings-chevron {
+  transform: rotate(180deg);
 }
 
 .settings-grid {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.settings-grid.open {
+  max-height: 300px;
+  opacity: 1;
 }
 
 .setting-item {
@@ -361,40 +391,20 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
 }
 
 
-.quotes-section {
-  text-align: center;
-}
-
-.quote-text {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.quote-text img {
-  display: block;
-  margin: 0 auto;
-}
-
 .coffee-button {
+  width: 100%;
   margin-top: 32px;
   display: flex;
   justify-content: center;
 }
 
-.coffee-button {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .coffee-button a {
-  display: inline-block;
-  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .coffee-button img {
   display: block;
-  margin: 0 auto;
 }
 
 /* === Music Player === */
@@ -479,6 +489,7 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
 }
 
@@ -615,7 +626,7 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   }
 
   .coffee-illustration {
-    max-width: 220px;
+    max-width: 280px;
   }
 
   .phase-name {
@@ -633,9 +644,17 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
 
   .btn,
   .setting-label,
-  .settings-title,
-  .quote-text{
+  .settings-toggle {
     font-family: var(--font-body);
+  }
+
+  .quotes-section {
+    gap: 4px;
+  }
+
+  .quote-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
   }
 
   .btn {
@@ -648,10 +667,8 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   }
 
   .music-player {
-    .music-player {
-      bottom: calc(12px + env(safe-area-inset-bottom));
-      right: 12px;
-    }
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    right: 12px;
   }
 }
 

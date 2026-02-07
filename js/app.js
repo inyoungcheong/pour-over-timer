@@ -29,6 +29,8 @@ const App = (() => {
       settingPour: document.getElementById('settingPour'),
       settingWait: document.getElementById('settingWait'),
       settings: document.getElementById('settings'),
+      settingsToggle: document.getElementById('settingsToggle'),
+      settingsGrid: document.getElementById('settingsGrid'),
     };
   }
 
@@ -227,6 +229,13 @@ const App = (() => {
         input.value = clamp(parseInt(input.value) || 1, 1, 300);
         handleSettingChange(phase, input.value);
       });
+    });
+
+    // Settings toggle
+    els.settingsToggle.addEventListener('click', () => {
+      const expanded = els.settingsToggle.getAttribute('aria-expanded') === 'true';
+      els.settingsToggle.setAttribute('aria-expanded', !expanded);
+      els.settingsGrid.classList.toggle('open');
     });
 
     // +/- buttons
