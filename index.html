@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour-over Coffee Timer</title>
+  <meta name="description" content="A minimal pour-over coffee timer with Bloom, Pour, and Wait phases.">
+  <meta property="og:title" content="Pour-over Coffee Timer">
+  <meta property="og:description" content="A minimal pour-over coffee timer with Bloom, Pour, and Wait phases.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Google AdSense - uncomment when ready
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+</head>
+<body>
+  <!-- Ad Banner (top) -->
+  <div class="ad-slot ad-slot--banner" aria-hidden="true">
+    <!-- AdSense banner ad unit goes here -->
+  </div>
+
+  <main class="container">
+    <!-- Left: Illustration -->
+    <section class="illustration-area">
+      <div class="coffee-illustration" id="coffeeIllustration">
+        <!-- SVG will be inlined here -->
+      </div>
+    </section>
+
+    <!-- Right: Timer + Controls -->
+    <section class="timer-area">
+      <!-- Phase Display -->
+      <div class="phase-display">
+        <h2 class="phase-name" id="phaseName">Bloom</h2>
+      </div>
+
+      <!-- Timer Display -->
+      <div class="timer-display">
+        <span class="timer-digits" id="timerDigits">00:40</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn--start" id="btnStart" aria-label="Start timer">Start</button>
+        <button class="btn btn--pause" id="btnPause" aria-label="Pause timer" disabled>Pause</button>
+        <button class="btn btn--stop" id="btnStop" aria-label="Stop timer" disabled>Stop</button>
+      </div>
+
+      <!-- Settings -->
+      <div class="settings" id="settings">
+        <h3 class="settings-title">Settings</h3>
+        <div class="settings-grid">
+          <div class="setting-item">
+            <label class="setting-label" for="settingBloom">Bloom</label>
+            <div class="setting-input-wrap">
+              <button class="setting-btn setting-btn--minus" data-target="settingBloom" aria-label="Decrease Bloom time">−</button>
+              <input type="number" class="setting-input" id="settingBloom" value="40" min="1" max="300" step="1">
+              <button class="setting-btn setting-btn--plus" data-target="settingBloom" aria-label="Increase Bloom time">+</button>
+              <span class="setting-unit">sec</span>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label class="setting-label" for="settingPour">Pour</label>
+            <div class="setting-input-wrap">
+              <button class="setting-btn setting-btn--minus" data-target="settingPour" aria-label="Decrease Pour time">−</button>
+              <input type="number" class="setting-input" id="settingPour" value="5" min="1" max="300" step="1">
+              <button class="setting-btn setting-btn--plus" data-target="settingPour" aria-label="Increase Pour time">+</button>
+              <span class="setting-unit">sec</span>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label class="setting-label" for="settingWait">Wait</label>
+            <div class="setting-input-wrap">
+              <button class="setting-btn setting-btn--minus" data-target="settingWait" aria-label="Decrease Wait time">−</button>
+              <input type="number" class="setting-input" id="settingWait" value="10" min="1" max="300" step="1">
+              <button class="setting-btn setting-btn--plus" data-target="settingWait" aria-label="Increase Wait time">+</button>
+              <span class="setting-unit">sec</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Music Player -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-controls">
+      <button class="music-lucky-btn" id="musicLucky" aria-label="Play random music">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+        </svg>
+        <span>I'm feeling lucky</span>
+      </button>
+      <button class="music-toggle" id="musicToggle" aria-label="Hide music player">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+      </button>
+    </div>
+    <div class="music-player-embed" id="musicPlayerEmbed">
+      <div id="ytPlayer"></div>
+    </div>
+  </div>
+
+  <!-- Ad Rectangle (bottom) -->
+  <div class="ad-slot ad-slot--rectangle" aria-hidden="true">
+    <!-- AdSense rectangle ad unit goes here -->
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Pour-over Timer</p>
+  </footer>
+
+  <script src="js/audio.js"></script>
+  <script src="js/youtube.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
