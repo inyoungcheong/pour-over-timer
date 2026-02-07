@@ -15,7 +15,7 @@
   --color-shadow: rgba(59, 30, 26, 0.08);
 
   --font-display: 'Orbitron', monospace;
-  --font-hand: 'Kalam', cursive;
+  --font-hand: 'Covered By Your Grace', cursive;
   --font-body: 'Inter', sans-serif;
 
   --radius-sm: 8px;
@@ -139,8 +139,10 @@ body {
   background: var(--color-timer-bg);
   border-radius: var(--radius-lg);
   padding: 28px 48px;
-  text-align: center;
-  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
   box-shadow:
     0 4px 20px var(--color-shadow),
     inset 0 1px 0 rgba(255,255,255,0.05);
@@ -153,9 +155,9 @@ body {
   color: var(--color-timer-text);
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
   text-shadow: 0 0 20px rgba(245, 243, 238, 0.15);
-  display: inline-block;
-  min-width: 5.5ch;
+  width: 5.5ch;
   text-align: center;
 }
 
