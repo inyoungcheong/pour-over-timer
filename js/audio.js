@@ -20,28 +20,49 @@ const AudioManager = (() => {
   }
 
   /**
-   * Play a clear ping sound at the given frequency
+   * Singing bowl — two slightly detuned sines that create a warm shimmer.
+   * Used when pour phase begins (water hitting the grounds).
    */
-  function playPing(freq, volume) {
+  function playBowl() {
     const c = getContext();
     const now = c.currentTime;
-    const v = volume || 0.35;
+    const base = 528;     // C5-ish, warm
+    const detune = 2;     // slight beat frequency for shimmer
+
+    [base, base + detune].forEach(freq => {
+      const osc = c.createOscillator();
+      const gain = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.2, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      osc.connect(gain);
+      gain.connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 1.3);
+    });
+  }
+
+  /**
+   * Wood knock — short, muted triangle-wave tap.
+   * Used when wait phase begins (put the kettle down, be still).
+   */
+  function playKnock() {
+    const c = getContext();
+    const now = c.currentTime;
 
     const osc = c.createOscillator();
     const gain = c.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.value = freq;
-
+    osc.type = 'triangle';
+    osc.frequency.value = 280;
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(v, now + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-
+    gain.gain.linearRampToValueAtTime(0.35, now + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
     osc.connect(gain);
     gain.connect(c.destination);
-
     osc.start(now);
-    osc.stop(now + 0.3);
+    osc.stop(now + 0.15);
   }
 
   /**
@@ -80,12 +101,10 @@ const AudioManager = (() => {
   function playTransition(from, to) {
     if (from === 'start') {
       playStartMelody();
-    } else if (from === 'bloom' && to === 'pour') {
-      playPing(880);   // A5 - bloom ends
-    } else if (from === 'pour' && to === 'wait') {
-      playPing(660);   // E5 - pour ends
-    } else if (from === 'wait' && to === 'pour') {
-      playPing(784);   // G5 - wait ends
+    } else if (to === 'pour') {
+      playBowl();    // singing bowl shimmer — pour begins
+    } else if (to === 'wait') {
+      playKnock();   // wood knock — wait begins
     }
   }
 

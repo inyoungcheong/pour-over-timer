@@ -5,7 +5,7 @@
 const App = (() => {
   // --- State ---
   const state = {
-    settings: { bloom: 40, pour: 5, wait: 10 },
+    settings: { bloom: 40, pour: 10, wait: 15 },
     currentPhase: 'bloom', // 'bloom' | 'pour' | 'wait'
     secondsRemaining: 40,
     isRunning: false,
@@ -41,8 +41,8 @@ const App = (() => {
       try {
         const parsed = JSON.parse(saved);
         state.settings.bloom = clamp(parsed.bloom || 40, 1, 300);
-        state.settings.pour = clamp(parsed.pour || 5, 1, 300);
-        state.settings.wait = clamp(parsed.wait || 10, 1, 300);
+        state.settings.pour = clamp(parsed.pour || 10, 1, 300);
+        state.settings.wait = clamp(parsed.wait || 15, 1, 300);
       } catch (e) {
         // Use defaults
       }
