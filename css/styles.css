@@ -381,6 +381,22 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
   justify-content: center;
 }
 
+.coffee-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.coffee-button a {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.coffee-button img {
+  display: block;
+  margin: 0 auto;
+}
+
 /* === Music Player === */
 .music-player {
   position: fixed;
@@ -637,6 +653,7 @@ body[data-phase="wait"]  .phase-name { color: var(--color-text-light); }
       right: 12px;
     }
   }
+}
 
 @media (max-width: 400px) {
   .timer-digits {
